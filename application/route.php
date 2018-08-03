@@ -10,7 +10,11 @@
 // +----------------------------------------------------------------------
 use think\Route;
 Route::resource('carinfo', 'index/carinfo');
+Route::resource('matin', 'index/matin');
+Route::resource('mpactm', 'index/mpactm');
+Route::resource('mpplan', 'index/mpplan');
 Route::resource('msaleodd', 'index/msaleodd');
+
 
 return [
     '__pattern__' => [

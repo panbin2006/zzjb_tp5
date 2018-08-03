@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class MpaceD extends Controller
+class Mpactd extends Controller
 {
     /**
      * 显示资源列表

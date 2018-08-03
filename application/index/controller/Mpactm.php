@@ -4,8 +4,9 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use app\index\model\Mpactm  as MpactmModel;
 
-class MpaceM extends Controller
+class Mpactm extends Controller
 {
     /**
      * 显示资源列表
@@ -14,7 +15,8 @@ class MpaceM extends Controller
      */
     public function index()
     {
-        //
+        $list  =  MpactmModel::paginate(3); 
+        return json($list);
     }
 
     /**
@@ -35,7 +37,9 @@ class MpaceM extends Controller
      */
     public function save(Request $request)
     {
-        //
+        $data   = $request->param();
+        $result = MpactmModel::create($data);
+        return json($result);
     }
 
     /**
@@ -46,7 +50,9 @@ class MpaceM extends Controller
      */
     public function read($id)
     {
-        //
+        $result = MpactmModel::get($id);
+        $mpactds = $result->mpactd;
+        return json($result);
     }
 
     /**
@@ -69,7 +75,9 @@ class MpaceM extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data   = $request->param();
+        $result = MpactmModel::update($data,['projectid'=> $id]);
+        return json($result);
     }
 
     /**
@@ -80,6 +88,7 @@ class MpaceM extends Controller
      */
     public function delete($id)
     {
-        //
+        $result = MpactmModel::destroy($id);
+        return json($result);
     }
 }

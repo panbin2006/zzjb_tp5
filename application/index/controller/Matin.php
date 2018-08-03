@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use app\index\model\Matin as MatinMOdel;
 
 class Matin extends Controller
 {
@@ -14,7 +15,8 @@ class Matin extends Controller
      */
     public function index()
     {
-        //
+        $list = MatinModel::paginate(3);
+        return json($list);
     }
 
     /**
@@ -24,7 +26,7 @@ class Matin extends Controller
      */
     public function create()
     {
-        //
+        //材料入库页面
     }
 
     /**
@@ -35,7 +37,10 @@ class Matin extends Controller
      */
     public function save(Request $request)
     {
-        //
+        //新增材料入库记录
+        $data   = $request->param();
+        $result = MatinModel::create($data); 
+        return json($result);
     }
 
     /**
@@ -46,7 +51,8 @@ class Matin extends Controller
      */
     public function read($id)
     {
-        //
+        $result = MatinModel::get($id);
+        return json($result);
     }
 
     /**
@@ -57,7 +63,7 @@ class Matin extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +75,9 @@ class Matin extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data   = $request->param();
+        $result = MatinModel::update($data,['ODDID' => $id]);
+        return json($result);
     }
 
     /**
@@ -80,6 +88,7 @@ class Matin extends Controller
      */
     public function delete($id)
     {
-        //
+        $result = MatinModel::destroy($id);
+        return json($result);
     }
 }

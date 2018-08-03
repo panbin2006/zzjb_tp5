@@ -4,7 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
-
+use app\index\model\Mpplan as MpplanModel;
 class Mpplan extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class Mpplan extends Controller
      */
     public function index()
     {
-        //
+        $list = MpplanModel::paginate(3);
+        return json($list);
     }
 
     /**
@@ -35,7 +36,9 @@ class Mpplan extends Controller
      */
     public function save(Request $request)
     {
-        //
+        $data   = $request->param();
+        $result = MpplanModel::create($data);
+        return json($result);
     }
 
     /**
@@ -46,7 +49,9 @@ class Mpplan extends Controller
      */
     public function read($id)
     {
-        //
+        $result    = mpplanmodel::get($id);
+        // $msaleodds = $result->msaleodd;
+        return json($result);
     }
 
     /**
@@ -69,7 +74,9 @@ class Mpplan extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data   = $request->param();
+        $result = MpplanModel::update($data, ['planid'=>$id]);
+        return json($data);
     }
 
     /**
@@ -80,6 +87,7 @@ class Mpplan extends Controller
      */
     public function delete($id)
     {
-        //
+        $result = MpplanModel::destroy($id);
+        return json($result);
     }
 }
