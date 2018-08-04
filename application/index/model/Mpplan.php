@@ -7,7 +7,7 @@ use think\Model;
 class Mpplan extends Model
 {
     //设置主键
-    protected  $pk = 'planid';
+    protected  $pk = 'PlanID';
     //自动过滤掉不存在的字段
     protected  $field = true;
 

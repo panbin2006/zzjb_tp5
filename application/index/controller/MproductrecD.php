@@ -60,7 +60,7 @@ class Mproductrecd extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -72,7 +72,9 @@ class Mproductrecd extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->param();
+        $result = MproductrecdModel::update($data,['ProductID',$id]);
+        return json($result);
     }
 
     /**
@@ -83,6 +85,7 @@ class Mproductrecd extends Controller
      */
     public function delete($id)
     {
-        //
+        $result = ProdctrecdModel::destroy($id);
+        return json($result);
     }
 }

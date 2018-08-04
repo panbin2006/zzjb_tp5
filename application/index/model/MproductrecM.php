@@ -13,7 +13,8 @@ class Mproductrecm extends Model
 
     //定义关联
     protected function mproductrecd(){
-    	$this->hasMany('Mproductrecd','ProductID','ProjectID');
+    	//关联主键字段名大小字要与数据库一致
+    	return $this->hasMany('Mproductrecd','ProductID','ProductID');
     }
     
 }

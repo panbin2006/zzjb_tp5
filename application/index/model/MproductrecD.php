@@ -13,5 +13,10 @@ class Mproductrecd extends Model
    //自动过滤不存在的字段 
    protected $field = true;
 
+   //定义关联关系
+   protected function mproductrecm(){
+
+   		return $this->belongsTo('Mproductrecm');
+   }
 
 }

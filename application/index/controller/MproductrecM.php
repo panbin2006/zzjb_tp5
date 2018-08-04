@@ -50,7 +50,8 @@ class Mproductrecm extends Controller
      */
     public function read($id)
     {
-       $result = MproductrecmModel::get($id);
+       $result       = MproductrecmModel::get($id);
+       $productrecds = $result->mproductrecd;
        return json($result);
     }
 
@@ -88,6 +89,11 @@ class Mproductrecm extends Controller
     public function delete($id)
     {
        $result = MproductrecmModel::destroy($id);
+        // 删除该盘料的材料消耗
+       // $rec = MproductrecmModel::get($id);
+       // if($rec->delete()){
+       //      $result = $rec->mproductrecd->deleteAll();
+       // }
        return json($result);
     }
 }
