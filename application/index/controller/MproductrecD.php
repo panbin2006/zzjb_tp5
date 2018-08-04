@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class MproductrecD extends Controller
+class Mproductrecd extends Controller
 {
     /**
      * 显示资源列表

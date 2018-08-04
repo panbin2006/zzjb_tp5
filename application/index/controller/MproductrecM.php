@@ -4,8 +4,9 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use app\index\model\Mproductrecm  as MproductrecmModel;
 
-class MproductrecM extends Controller
+class Mproductrecm extends Controller
 {
     /**
      * 显示资源列表
@@ -14,7 +15,8 @@ class MproductrecM extends Controller
      */
     public function index()
     {
-        //
+       $list =  MproductrecmModel::paginate(3);
+       return json($list);
     }
 
     /**
@@ -35,7 +37,9 @@ class MproductrecM extends Controller
      */
     public function save(Request $request)
     {
-        //
+        $data   = $request->param();
+        $result = MproductrecmModel::create($data);
+        return json($result);
     }
 
     /**
@@ -46,7 +50,8 @@ class MproductrecM extends Controller
      */
     public function read($id)
     {
-        //
+       $result = MproductrecmModel::get($id);
+       return json($result);
     }
 
     /**
@@ -69,7 +74,9 @@ class MproductrecM extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $data = $request->param();
+       $result = MproductrecmModel::update($data,['ProductID' => $id]);
+       return json($result);
     }
 
     /**
@@ -80,6 +87,7 @@ class MproductrecM extends Controller
      */
     public function delete($id)
     {
-        //
+       $result = MproductrecmModel::destroy($id);
+       return json($result);
     }
 }
