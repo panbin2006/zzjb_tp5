@@ -4,8 +4,9 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use app\index\model\Mpplancust as MpplancustModel;
 
-class MPPlanCust extends Controller
+class Mpplancust extends Controller
 {
     /**
      * 显示资源列表
@@ -14,7 +15,8 @@ class MPPlanCust extends Controller
      */
     public function index()
     {
-        //
+       $result =  MpplancustModel::paginate(3);
+       return json($result);
     }
 
     /**
@@ -24,7 +26,7 @@ class MPPlanCust extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +37,9 @@ class MPPlanCust extends Controller
      */
     public function save(Request $request)
     {
-        //
+        $data   = $request->param();
+        $result = MpplancustModel::create($data);
+        return json($result);
     }
 
     /**
@@ -46,7 +50,8 @@ class MPPlanCust extends Controller
      */
     public function read($id)
     {
-        //
+       $result = MpplancustModel::get($id);
+       return json($result);
     }
 
     /**
@@ -69,7 +74,9 @@ class MPPlanCust extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $data   = $request->param();
+       $result = MpplancustModel::update($data,['Planid' => $id]);
+       return json($result);
     }
 
     /**
@@ -80,6 +87,9 @@ class MPPlanCust extends Controller
      */
     public function delete($id)
     {
-        //
+
+        $result = MpplancustModel::destroy($id);
+
+        return json($result);
     }
 }
