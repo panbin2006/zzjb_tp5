@@ -7,7 +7,7 @@ use think\Model;
 class Msaleodd extends Model
 {
    //设置主键pk
-	protected  $pk = 'saleid';
+	protected  $pk = 'SaleID';
 	//自动过滤掉不存在的字段
 	protected $field = true; 
 

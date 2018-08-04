@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use app\index\model\Mproductrecd as  MproductrecdModel;
 
 class Mproductrecd extends Controller
 {
@@ -14,7 +15,8 @@ class Mproductrecd extends Controller
      */
     public function index()
     {
-        //
+        $list =  MproductrecdModel::paginate(3);
+        return json($list);
     }
 
     /**
@@ -46,7 +48,8 @@ class Mproductrecd extends Controller
      */
     public function read($id)
     {
-        //
+        $result = MproductrecdModel::get($id);
+        return json($result);
     }
 
     /**

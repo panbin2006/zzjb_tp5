@@ -13,6 +13,7 @@ class Mpplan extends Model
 
     // 定义关联
     public function msaleodd(){
-    	return $this->hasMany('Msaleodd','planid');
+    	//关联主键字段名大小字要与数据库一致
+    	return $this->hasMany('Msaleodd','PlanID','PlanID');
     }
 }

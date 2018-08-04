@@ -50,7 +50,7 @@ class Mpplan extends Controller
     public function read($id)
     {
         $result    = mpplanmodel::get($id);
-        // $msaleodds = $result->msaleodd;
+        $msaleodds = $result->msaleodd;
         return json($result);
     }
 
