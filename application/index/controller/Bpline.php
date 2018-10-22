@@ -1,37 +1,23 @@
 <?php
 
 namespace app\index\controller;
-
+use app\index\model\Bpline as PlineModel;
 use think\Controller;
 use think\Request;
-Use think\Db;
-use app\index\model\Matin as MsaleoddMOdel;
 
-class Msaleodd extends Controller
+class Bpline extends Controller
 {
     /**
      * 显示资源列表
      *
      * @return \think\Response
      */
-    public function index($pdateS,$pdateE)
+    public function index()
     {
-        //按开始时间，截止时间查询送货单
-
-        $sql="select  * from msaleodd where pdate between  '".$pdateS."' and  '".$pdateE."' order by pdate desc";
-        $rows = Db::query($sql); 
-        return json_encode($rows);
+        $list = PlineModel::select();
+        return json($list);
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * 保存新建的资源
@@ -41,29 +27,34 @@ class Msaleodd extends Controller
      */
     public function save(Request $request)
     {
-        //
+        //注意表单提交时字段大小写要与数据库字段大小写一致
+        $data = $request->param();
+        $result = PlineModel::create($data);
+        return json($result);
     }
 
     /**
      * 显示指定的资源
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \think\Response
      */
     public function read($id)
     {
-        //
+       $result = PlineModel::get($id); 
+       return json($result);
+        // echo 'read';
     }
 
     /**
      * 显示编辑资源表单页.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \think\Response
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -75,17 +66,20 @@ class Msaleodd extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data   = $request->param();
+        $result = PlineModel::update($data,['BMID' =>$id]);
+        return json($result);
     }
 
     /**
      * 删除指定资源
      *
-     * @param  int  $id
+     * @param  string  $carid
      * @return \think\Response
      */
     public function delete($id)
     {
-        //
+        $result = PlineModel::destroy($id);
+        return json($result);
     }
 }
