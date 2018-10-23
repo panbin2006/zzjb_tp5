@@ -15,11 +15,13 @@ class Syhqxd extends Controller
      */
     public function index($yhname='')
     {
-        $rows = Db::name('Syhqxd')
-                ->where([
-                    'yhid'      => ['=', $yhname],
-                    'ModuleID'  => ['in',['MPactM','MPPlan','MSaleOdd','MPhbProd','MatIn','CarInfo','MPPlanCust'] ]
-                ])->select();
+    //     $rows = Db::name('Syhqxd')
+    //             ->where([
+    //                 'yhid'      => ['=', $yhname],
+    //                 'ModuleID'  => ['in',['MPactM','MPPlan','MSaleOdd','MPhbProd','MatIn','CarInfo','MPPlanCust'] ]
+    //             ])->select();
+        $sql="select yhid,coid,ModuleName,PRead,PAdd,PEdit,PDel,PPrint,PExport,PSH,PGZ,PCoID,NeedYN,BeginTag from syhqxd where  yhid= '".$yhname."' and ModuleID  in ('MPactM','MPPlan','MSaleOdd','MPhbProd','MatIn','CarInfo')";
+        $rows = Db::query($sql);
         return json_encode($rows);
     }
 

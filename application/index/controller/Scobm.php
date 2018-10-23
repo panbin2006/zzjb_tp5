@@ -2,6 +2,7 @@
 
 namespace app\index\controller;
 use app\index\model\Scobm as ScobmModel;
+use think\Db;
 use think\Controller;
 use think\Request;
 
@@ -14,8 +15,10 @@ class Scobm extends Controller
      */
     public function index()
     {
-        $list = ScobmModel::paginate(3);
-        return json($list);
+        // $rows = ScobmModel::field('bmid','bmname')->find();
+        $sql="select bmid,bmname from SCoBM";
+        $rows = Db::query($sql);
+        echo json_encode($rows);
     }
 
 

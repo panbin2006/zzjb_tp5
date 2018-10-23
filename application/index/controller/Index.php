@@ -9,7 +9,7 @@ class Index
     public function index($pdate='')
     {
         // 查询计划方量、已送方量、未送方量
-    	$sql = "select sum(Qualityplan) As yjfl,sum(QualityGive) As ysfl, sum(QualityWS) As wsfl from mpplan where convert(char(10),pdate,121)='".$pdate."'";
+    	$sql = "select sum(Qualityplan) As jhfl,sum(QualityGive) As ysfl, sum(QualityWS) As wsfl from mpplan where convert(char(10),pdate,121)='".$pdate."'";
         $row = Db::query($sql);
 
         // 查询发货车次

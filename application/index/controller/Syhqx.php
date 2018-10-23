@@ -104,17 +104,7 @@ class Syhqx extends Controller
         }
     }
 
-    /**
-    *用户权限查询
-    *
-    */
-    public function yhqx($yhname){
-        $rows = Db::name('Syhqx')
-                ->where([
-                    'yhid'      => ['=', $yhname],
-                    'ModuleID'  => ['in',['MPactM','MPPlan','MSaleOdd','MPhbProd','MatIn','CarInfo'] ]
-                ])->select();
-    }
+  
 
 
 

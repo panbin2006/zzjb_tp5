@@ -13,9 +13,9 @@ return [
     // 数据库类型
     'type'            => 'sqlsrv',
     // 服务器地址
-    'hostname'        => 'localhost\pan',
+    'hostname'        => 'gyrs.in.3322.org,15061',
     // 数据库名
-    'database'        => 'jbzsoft_2018_JB02',
+    'database'        => 'jbzsoft',
     // 用户名
     'username'        => 'jbzsoft',
     // 密码
