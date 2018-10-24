@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 use app\index\model\Mpactm  as MpactmModel;
 
 class Mpactm extends Controller
@@ -13,10 +14,13 @@ class Mpactm extends Controller
      *
      * @return \think\Response
      */
-    public function index()
+    public function index($projectname='',$custname='')
     {
-        $list  =  MpactmModel::paginate(3); 
-        return json($list);
+        // $list  =  MpactmModel::paginate(3); 
+        // return json($list);
+        $sql="select top 100  shtag, projectid,projectname,custname,pdate,execstate from mpactm where  projectname like '%".$projectname."%' or custname like '%".$custname."%'  order by pdate desc";
+        $rows = Db::query($sql);
+        return json_encode($rows);
     }
 
     /**
@@ -91,4 +95,16 @@ class Mpactm extends Controller
         $result = MpactmModel::destroy($id);
         return json($result);
     }
+
+    /**
+    **合同审核
+    *
+    */
+    public function sh($shstate,$projectid){
+
+        $sql="update mpactm set trigtag='1',shtag='".$shstate."' where projectid='".$projectid."'";
+        $rows = Db::query($sql);
+        return json_encode($rows);
+    }
+
 }

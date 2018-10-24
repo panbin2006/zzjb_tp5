@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 use app\index\model\Matin as MatinMOdel;
 
 class Matin extends Controller
@@ -90,5 +91,30 @@ class Matin extends Controller
     {
         $result = MatinModel::destroy($id);
         return json($result);
+    }
+
+    /**
+    *按材料汇总
+    *
+    */
+    public function byMatname($pdateS,$pdateE){
+
+        $sql="select  MatType,MatName,sum(WNet) as Quality,count(1) as carNum from matin 
+        where pdate between  '".$pdateS."' and  '".$pdateE."' group by MatType,MatName";
+        // return $sql;
+        $rows = Db::query($sql);
+        return json_encode($rows);
+    }
+
+
+    /**
+    *按供应商汇总
+    *
+    */
+    public function bySupplier($pdateS,$pdateE){
+        $sql="select  SupplierName,MatType,MatName,sum(WNet) as Quality,count(1) as carNum from matin 
+            where pdate between  '".$pdateS."' and  '".$pdateE."' group by SupplierName,MatType,MatName";
+        $rows = Db::query($sql);
+        return json_encode($rows);
     }
 }

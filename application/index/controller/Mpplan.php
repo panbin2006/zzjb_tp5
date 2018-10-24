@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 use app\index\model\Mpplan as MpplanModel;
 class Mpplan extends Controller
 {
@@ -12,10 +13,12 @@ class Mpplan extends Controller
      *
      * @return \think\Response
      */
-    public function index()
+    public function index($pdate)
     {
-        $list = MpplanModel::paginate(3);
-        return json($list);
+        $sql="select   * from mpplan where  pdate='".$pdate."' order by planid desc";
+        $rows = Db::query($sql);
+        return json_encode($rows);
+
     }
 
     /**

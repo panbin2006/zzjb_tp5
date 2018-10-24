@@ -15,8 +15,8 @@ class Mpplancust extends Controller
      */
     public function index()
     {
-       $result =  MpplancustModel::paginate(3);
-       return json($result);
+       $result =  MpplancustModel::select();
+       return json_encode($result);
     }
 
     /**

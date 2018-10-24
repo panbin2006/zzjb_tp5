@@ -4,6 +4,8 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
+use app\model\Mpactd as MpactdModel;
 
 class Mpactd extends Controller
 {
@@ -12,9 +14,11 @@ class Mpactd extends Controller
      *
      * @return \think\Response
      */
-    public function index()
+    public function index($projectid)
     {
-        //
+        $sql="select * from mpactd where projectid='".$projectid."'";
+        $rows = Db::query($sql);
+        return json_encode($rows);
     }
 
     /**

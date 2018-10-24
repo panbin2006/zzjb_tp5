@@ -14,8 +14,8 @@ class Carinfo extends Controller
      */
     public function index()
     {
-        $list = CarinfoModel::paginate(3);
-        return json($list);
+        $list = CarinfoModel::select();
+        return json_encode($list);
     }
 
 
